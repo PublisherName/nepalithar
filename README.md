@@ -10,6 +10,8 @@ This is a simple Nepali Thar package. This package can be used to generate list 
 
 ## How to Import
 
+    >>> pip install nepalithar
+    
     >>> import nepalithar
     
     >>> thar = nepalithar.Caste()
