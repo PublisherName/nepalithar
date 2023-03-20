@@ -1,6 +1,5 @@
 class CASTE_HELPER:
-    def GET_CASTE_LIST(self):
-        
+    def get_caste_list(self):
         CASTE = [
                 'AACHARYA',
             
@@ -6129,20 +6128,3 @@ class CASTE_HELPER:
                 'ZOGI'
             ]
         return CASTE
-
-    def _change_to_list(self, str, by=" "):
-            return str.strip().split(by)
-
-    def _get_list_len(self, list):
-        return len(list)
-
-    def _str_process(self, str):
-        str = str.strip()
-        return str
-
-    def _list_to_str(self, name_list):
-        str_name = ' '.join([str(elem) for elem in name_list])
-        return str_name
-    
-    def _list_to_title(self,name_list):
-        return list(map(str.title,name_list))
