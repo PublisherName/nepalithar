@@ -1,22 +1,22 @@
-from nepalithar.helper import *
+PRODUCTION = True
+if PRODUCTION:
+    from nepalithar.helper import *
+else:
+    from helper import CasteHelper
 import random
 
-class Caste(CASTE_HELPER):
-       
-    def is_true(self, caste):
-        if not isinstance(caste, str):
-            raise TypeError("Input parameter must be a string")
-        if caste.strip():
-            return caste.strip().upper() in self.get_caste_list()
-        return False
+class Caste(CasteHelper):
     
     def detect(self, input_string):
         word_list = input_string.strip().split(" ")
-        index = [(i, word) for i, word in enumerate(word_list) if word.upper() in self.get_caste_list()]
+        index = [(i, word) for i, word in enumerate(word_list) if self._is_present(word.upper())]
         return index
 
+    def is_caste(self,caste):
+        return self._is_present(caste)
+
     def get(self, n=1):
-        return random.sample(self.get_caste_list(), n)
+        return self._get_random_caste(n)
 
     def get_position(self, string):
         caste_in = self.detect(string)
@@ -34,7 +34,7 @@ class Caste(CASTE_HELPER):
         elif (total_caste_found > 1):
             previous = 0
             for _, index in enumerate(caste_index):
-                if index + 1 < len(raw_name) and self.is_true(raw_name[index]) and self.is_true(raw_name[index + 1]):
+                if index + 1 < len(raw_name) and self._is_present(raw_name[index]) and self._is_present(raw_name[index + 1]):
                     pass
                 else:
                     name_bucket.append(' '.join(raw_name[0 if len(name_bucket) == 0 else previous + 1:index + 1]))
